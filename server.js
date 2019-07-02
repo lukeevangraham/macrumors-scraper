@@ -40,11 +40,11 @@ app.get('/', function (req, res) {
 
 app.get("/scrape", function(req, res) {
     console.log("begin scrape")
-    axios.get("https://www.sandiegouniontribune.com/").then(function(response) {
+    axios.get("https://www.macrumors.com/").then(function(response) {
         var $ = cheerio.load(response.data);
 
         
-        $("div.PromoMedium-title").each(function(i, element) {
+        $("h2.title").each(function(i, element) {
             var result = {};
 
             result.title = $(this)
