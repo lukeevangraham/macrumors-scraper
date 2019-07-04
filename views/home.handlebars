@@ -1,1 +1,12 @@
-<h1>Example App: Home</h1>
+<div class="container">
+    <h1>Example App: Home</h1>
+    <div class="container col-md-6">
+
+        <ul>
+            {{#each article}}
+            <h3> <a href=" {{link}} " target="blank"> {{title}} </a> </h3>
+            <p> {{summary}} </p>
+            {{/each}}
+        </ul>
+    </div>
+</div>
