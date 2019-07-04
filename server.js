@@ -28,7 +28,7 @@ app.set('view engine', 'handlebars');
 
 
 // If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB || "mongodb://localhost/mongoHeadlines";
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
 mongoose.connect(MONGODB_URI);
 
@@ -47,24 +47,9 @@ app.get('/', function (req, res) {
 });
 
 app.get("/scrape", function (req, res) {
-    // console.log("begin scrape")
     axios.get("https://www.macrumors.com/").then(function (response) {
         var $ = cheerio.load(response.data);
         let scrapeCount = 0
-
-        // $(".article").each(function (i, element) {
-            // console.log("title: ", $(this).children("h2.title").children("a").text())
-            // console.log("link: ", $(this).children("h2.title").children("a").attr("href"))
-            // let str = $(this).children(".content").children(".content_inner").text()
-            // let maxLength = 135
-
-            // let newTrimmedString = str.split('.')[0]
-            // console.log("new trim: ", newTrimmedString)
-
-            // var trimmedString = str.substr(0, maxLength)
-            // trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
-            // console.log("summary: ", trimmedString)
-        // })
 
         var result = {};
 
@@ -77,7 +62,6 @@ app.get("/scrape", function (req, res) {
             trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
 
             let newTrimmedString = str.split('.')[0] + ".";
-
 
             result.title = $(this)
                 .children("h2.title").children("a")
@@ -100,8 +84,8 @@ app.get("/scrape", function (req, res) {
 
         // make popup with how many articles were added
 
-        // res.send("Added " + scrapeCount + " new articles!");
-        res(home);
+        res.send("Added " + scrapeCount + " new articles!");
+        // res(home);
 
     })
 })

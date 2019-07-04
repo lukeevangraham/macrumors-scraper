@@ -1,11 +1,28 @@
 <div class="container">
     <h1>Example App: Home</h1>
-    <div class="container col-md-6">
+    {{!-- <div class="container col-md-7"> --}}
 
         <ul>
             {{#each article}}
-            <h3> <a href=" {{link}} " target="blank"> {{title}} </a> </h3>
-            <p> {{summary}} </p>
+            {{!-- <div class="row">
+                <div class="col-8">
+                    <h4> <a href=" {{link}} " target="blank"> {{title}} </a> </h4>
+                </div>
+                <div class="col-4">
+                    <button type="button" class="btn btn-dark">Save Article</button>
+                </div>
+            </div>
+            <p>  </p> --}}
+
+            <div class="card col-7 mx-auto mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">{{title}}</h5>
+                    {{!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> --}}
+                    <p class="card-text">{{summary}}</p>
+                    {{!-- <a href="#" class="card-link">Card link</a> --}}
+                    {{!-- <a href="#" class="card-link">Another link</a> --}}
+                </div>
+            </div>
             {{/each}}
         </ul>
     </div>
