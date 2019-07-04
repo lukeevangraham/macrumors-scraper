@@ -47,9 +47,8 @@ app.get("/scrape", function (req, res) {
         $(".article").each(function (i, element) {
             console.log("title: ", $(this).children("h2.title").children("a").text())
             console.log("link: ", $(this).children("h2.title").children("a").attr("href"))
-            // console.log("summary: ", $(this).children(".content").children(".content_inner").text())
             let str = $(this).children(".content").children(".content_inner").text()
-            var maxLength = 135
+            let maxLength = 135
 
             var trimmedString = str.substr(0, maxLength)
             trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
@@ -58,14 +57,22 @@ app.get("/scrape", function (req, res) {
 
         var result = {};
 
-        $("h2.title").each(function (i, element) {
+        $(".article").each(function (i, element) {
+
+            let str = $(this).children(".content").children(".content_inner").text()
+            let maxLength = 135
+
+            var trimmedString = str.substr(0, maxLength)
+            trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
 
             result.title = $(this)
-                .children("a")
+                .children("h2.title").children("a")
                 .text();
             result.link = $(this)
-                .children("a")
+                .children("h2.title").children("a")
                 .attr("href");
+            result.summary = trimmedString
+
 
             db.Article.create(result)
                 .then(function (dbArticle) {
