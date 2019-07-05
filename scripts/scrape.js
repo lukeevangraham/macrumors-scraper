@@ -6,19 +6,7 @@ let scrape = function (cb) {
         var $ = cheerio.load(response.data);
         let scrapeCount = 0
 
-        // $(".article").each(function (i, element) {
-            // console.log("title: ", $(this).children("h2.title").children("a").text())
-            // console.log("link: ", $(this).children("h2.title").children("a").attr("href"))
-            // let str = $(this).children(".content").children(".content_inner").text()
-            // let maxLength = 135
 
-            // let newTrimmedString = str.split('.')[0]
-            // console.log("new trim: ", newTrimmedString)
-
-            // var trimmedString = str.substr(0, maxLength)
-            // trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
-            // console.log("summary: ", trimmedString)
-        // })
 
         var result = {};
 
@@ -31,7 +19,6 @@ let scrape = function (cb) {
             trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
 
             let newTrimmedString = str.split('.')[0] + ".";
-
 
             result.title = $(this)
                 .children("h2.title").children("a")
@@ -55,7 +42,6 @@ let scrape = function (cb) {
         // make popup with how many articles were added
 
         res(home);
-
     })
 }
 

@@ -1,5 +1,4 @@
 var mongoose = require("mongoose");
-// var uniqueValidator = require('mongoose-unique-validator');
 
 // Save a reference to the Schema constructor
 var Schema = mongoose.Schema;
@@ -14,23 +13,26 @@ var ArticleSchema = new Schema({
     required: true,
     validate: {
       isAsync: true,
-      validator: function(value, isValid) {
+      validator: function (value, isValid) {
         const self = this;
-        return self.constructor.findOne({ title: value})
-        .exec(function(err, article) {
-          if(err){
-            throw err;
-          }
-          else if(article) {
-            if(self.id === article.id){
-              return isValid(true);
+        return self.constructor.findOne({ title: value })
+          .exec(function (err, article) {
+            if (err) {
+              throw err;
             }
-            return isValid(false);
-          }
-          else {
-            return isValid(true);
-          }
-        })
+            else if (article) {
+              if (self.id === article.id) {
+                return isValid(true);
+                console.log("article added!!")
+              }
+              return isValid(false);
+              console.log("article not added")
+            }
+            else {
+              return isValid(true);
+              console.log("article added!!")
+            }
+          })
       },
       message: 'The title is already taken!'
     }
@@ -52,8 +54,6 @@ var ArticleSchema = new Schema({
     ref: "Note"
   }
 });
-
-// ArticleSchema.plugin(uniqueValidator)
 
 // This creates our model from the above schema, using mongoose's model method
 var Article = mongoose.model("Article", ArticleSchema);
