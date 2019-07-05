@@ -36,14 +36,14 @@ mongoose.connect(MONGODB_URI);
 
 app.get('/', function (req, res) {
     db.Article.find({})
-    .then(function(dbArticle) {
-        // console.log(dbArticle);
-        res.render('home', { article: dbArticle } )
-    })
-    .catch(function(err) {
-        // If an error occurred, send it to the client
-        res.json(err);
-    });
+        .then(function (dbArticle) {
+            // console.log(dbArticle);
+            res.render('home', { article: dbArticle })
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
 });
 
 app.get("/scrape", function (req, res) {
@@ -56,10 +56,6 @@ app.get("/scrape", function (req, res) {
         $(".article").each(function (i, element) {
 
             let str = $(this).children(".content").children(".content_inner").text()
-            let maxLength = 135
-
-            var trimmedString = str.substr(0, maxLength)
-            trimmedString = trimmedString.substr(0, Math.min(trimmedString.length, trimmedString.lastIndexOf(" ")))
 
             let newTrimmedString = str.split('.')[0] + ".";
 
@@ -76,7 +72,6 @@ app.get("/scrape", function (req, res) {
                     // console.log(dbArticle);
                 })
                 .catch(function (err) {
-                    // console.log(err);
                 });
 
             scrapeCount++;
@@ -91,18 +86,18 @@ app.get("/scrape", function (req, res) {
 })
 
 // Route for getting all Articles from the db
-app.get("/articles", function(req, res) {
+app.get("/articles", function (req, res) {
     // Grab every document in the Articles collection
     db.Article.find({})
-      .then(function(dbArticle) {
-        // If we were able to successfully find Articles, send them back to the client
-        res.json(dbArticle);
-      })
-      .catch(function(err) {
-        // If an error occurred, send it to the client
-        res.json(err);
-      });
-  });
+        .then(function (dbArticle) {
+            // If we were able to successfully find Articles, send them back to the client
+            res.json(dbArticle);
+        })
+        .catch(function (err) {
+            // If an error occurred, send it to the client
+            res.json(err);
+        });
+});
 
 
 
