@@ -1,7 +1,44 @@
 var express = require("express");
 var mongoose = require("mongoose");
-
 var expressHandlebars = require("express-handlebars");
+var bodyParser = require('body-parser')
+
+var PORT = process.env.PORT || 3000;
+
+var app = express();
+
+var router = express.Router();
+
+require("./config/routes")(router);
+
+// Make public a static folder
+app.use(express.static("public"));
+
+app.engine('handlebars', expressHandlebars());
+app.set('view engine', 'handlebars');
+
+app.use(bodyParser.urlencoded({
+    extended: false,
+}));
+
+app.use(router);
+
+// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
+var db = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
+
+mongoose.connect(db), function(error) {
+    if (error) {
+        console.log(error);
+    }
+    else {
+        console.log("mongoose connection is successful");
+    }
+};
+
+app.listen(PORT, function () {
+    // Log (server-side) when our server has started
+    console.log("Server listening on: http://localhost:" + PORT);
+})
 
 // Requiring the `mongoHeadlines` model for accessing the `mongoHeadline` collection
 // var Example = require("./mongoHeadlines.js");
@@ -15,26 +52,18 @@ var cheerio = require("cheerio");
 // Require all models
 var db = require("./models");
 
-var PORT = process.env.PORT || 3000;
-
-// var bodyParser = require('body-parser')
-var app = express();
+ 
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 
-app.engine('handlebars', expressHandlebars());
-app.set('view engine', 'handlebars');
 
 
-// Make public a static folder
-app.use(express.static("public"));
 
-// If deployed, use the deployed database. Otherwise use the local mongoHeadlines database
-var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/mongoHeadlines";
 
-mongoose.connect(MONGODB_URI);
+
+
 
 
 // Route for getting all Articles from the db
@@ -127,7 +156,3 @@ app.get("/articles", function (req, res) {
 
 
 
-app.listen(PORT, function () {
-    // Log (server-side) when our server has started
-    console.log("Server listening on: http://localhost:" + PORT);
-})

@@ -5,13 +5,10 @@
     <meta charset="utf-8">
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<script
-  src="https://code.jquery.com/jquery-3.4.1.min.js"
-  integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-  crossorigin="anonymous"></script>
-<script src="app.js"></script>
+<link rel="stylesheet" href="../../public/assets/css/style.css">
+{{!-- <script src="app.js"></script> --}}
 
-    <title>Example App</title>
+    <title>Mongo Scraper</title>
 </head>
 
 <body>
@@ -25,13 +22,13 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Saved Articles</a>
+        <a class="nav-link" href="/commented">Commented Articles</a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-secondary mr-1" href="scrape">Scrape New Articles</a>
+        <a class="btn btn-secondary mr-1 scrape-new">Scrape New Articles</a>
       </li>
       <li class="nav-item">
         <a class="btn btn-secondary" href="#">Clear Articles</a>
