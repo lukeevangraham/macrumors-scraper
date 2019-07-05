@@ -5,19 +5,19 @@
 
     <div class="card col-7 mx-auto mt-4">
         <div class="card-body">
-            <h5 class="card-title">{{title}}</h5>
+            <h5 class="card-title"><a target="blank" href="{{link}}">{{title}}</a></h5>
             {{!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> --}}
             <p class="card-text">{{summary}}</p>
             {{!-- <a href="#" class="card-link">Card link</a> --}}
             {{!-- <a href="#" class="card-link">Another link</a> --}}
         <div class="form-group">
             <label for="exampleFormControlTextarea1">Add a comment:</label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="2"></textarea>
-            <button type="button" class="btn btn-secondary float-right mt-1">Post comment</button>
+            <textarea class="form-control" id="bodyinput" name="body" rows="2"></textarea>
+            <button type="button" class="btn btn-secondary float-right mt-1" id="postcomment" data-id="{{_id}}">Post comment</button>
         </div>
         <div class="card-footer">
             <p class="card-text">Comments:</p>
-            <p class="card-text">Lorem ipsum dolar</p>
+            <p class="card-text">{{post}}</p>
         </div>
         </div>
     </div>
@@ -25,3 +25,6 @@
     {{!-- </ul> --}}
 </div>
 </div>
+
+
+
