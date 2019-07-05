@@ -11,31 +11,32 @@ var ArticleSchema = new Schema({
   title: {
     type: String,
     required: true,
-    validate: {
-      isAsync: true,
-      validator: function (value, isValid) {
-        const self = this;
-        return self.constructor.findOne({ title: value })
-          .exec(function (err, article) {
-            if (err) {
-              throw err;
-            }
-            else if (article) {
-              if (self.id === article.id) {
-                return isValid(true);
-                console.log("article added!!")
-              }
-              return isValid(false);
-              console.log("article not added")
-            }
-            else {
-              return isValid(true);
-              console.log("article added!!")
-            }
-          })
-      },
-      message: 'The title is already taken!'
-    }
+    unique: true,
+    // validate: {
+    //   isAsync: true,
+    //   validator: function (value, isValid) {
+    //     const self = this;
+    //     return self.constructor.findOne({ title: value })
+    //       .exec(function (err, article) {
+    //         if (err) {
+    //           throw err;
+    //         }
+    //         else if (article) {
+    //           if (self.id === article.id) {
+    //             return isValid(true);
+    //             console.log("article added!!")
+    //           }
+    //           return isValid(false);
+    //           console.log("article not added")
+    //         }
+    //         else {
+    //           return isValid(true);
+    //           console.log("article added!!")
+    //         }
+    //       })
+    //   },
+    //   message: 'The title is already taken!'
+    // }
   },
   // `link` is required and of type String
   link: {
@@ -49,10 +50,10 @@ var ArticleSchema = new Schema({
   // `note` is an object that stores a Note id
   // The ref property links the ObjectId to the Note model
   // This allows us to populate the Article with an associated Note
-  post: {
-    type: Schema.Types.ObjectId,
-    ref: "Comment"
-  }
+  // post: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Comment"
+  // }
 });
 
 // This creates our model from the above schema, using mongoose's model method
