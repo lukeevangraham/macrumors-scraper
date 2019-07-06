@@ -4,6 +4,8 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 let scrape = function (cb) {
+    console.log("scrape initiated!")
+
     axios.get("https://www.macrumors.com/").then(function (response) {
         let $ = cheerio.load(response.data);
         
@@ -19,9 +21,9 @@ let scrape = function (cb) {
             let newTrimmedString = str.split('.')[0] + ".";
             
             let dataToAdd = {
-                article = $(this).children("h2.title").children("a").text(),
-                link = $(this).children("h2.title").children("a").attr("href"),
-                summary = newTrimmedString
+                article : $(this).children("h2.title").children("a").text(),
+                link : $(this).children("h2.title").children("a").attr("href"),
+                summary : newTrimmedString
             };
 
             result.push(dataToAdd);

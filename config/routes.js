@@ -55,7 +55,7 @@ module.exports = function (router) {
     })
     
     router.get("/api/comments/:article_id?", function(req, res) {
-        let query + {}
+        let query = {}
         if (req.params.article_id) {
             query._id = req.params.article_id;
         }
