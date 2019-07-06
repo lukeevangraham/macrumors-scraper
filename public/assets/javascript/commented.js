@@ -3,7 +3,7 @@ $(document).ready(function () {
     $(document).on("click", ".btn.delete", handleArticleDelete);
     $(document).on("click", ".btn.comments", handleArticleComments);
     $(document).on("click", ".btn.comment", handleCommentComment);
-    $(document).on("click", ".btn.note-delete", handleCommentDelete);
+    $(document).on("click", ".btn.delete", handleCommentDelete);
 
     initPage();
 
@@ -31,7 +31,7 @@ $(document).ready(function () {
                 "<a class='btn btn-danger delete'>",
                 "Delete From Commented",
                 "</a>",
-                "<a class='btn btn-info notes'>Article Comments</a>",
+                "<a class='btn btn-info comments'>Article Comments</a>",
                 "</h3>",
                 "</div>",
                 "<div class='panel-body'>",
@@ -41,7 +41,7 @@ $(document).ready(function () {
             ].join(""));
         // We attach the article's id to the jQuery element
         // We will use this when trying to figure out which article the user wants to comment
-        panel.data("_id", article.id);
+        panel.data("_id", article._id);
         // return the constructed panel jQuery element
         return panel;
     }
@@ -102,7 +102,7 @@ $(document).ready(function () {
                 "<button class='btn btn-success save'>Save Comment</button>",
                 "</div>"
             ].join("");
-            dialog({
+            bootbox.dialog({
                 message: modalText,
                 closeButton: true
             })
@@ -110,7 +110,7 @@ $(document).ready(function () {
                 _id: currentArticle._id,
                 notes: data || []
             };
-            $(".btn.comment").data("article", noteData);
+            $(".btn.comment").data("article", commentData);
             renderCommentsList(commentData);
         })
     }
@@ -156,7 +156,10 @@ $(document).ready(function () {
     }
 
     function handleCommentDelete() {
+        console.log("handling delete initiated")
+        console.log($(this).data("_id"))
         let commentToDelete = $(this).data("_id");
+        console.log("comment to delete: ",commentToDelete)
         $.ajax({
             url: "/api/comments/" + commentToDelete,
             method: "DELETE"

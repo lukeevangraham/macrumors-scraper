@@ -26,6 +26,7 @@ $(document).ready(function () {
         let articlePanels = [];
         for (let i = 0; i < articles.length; i++) {
             articlePanels.push(createPanel(articles[i]));
+            // console.log(articles._id)
         }
         articleContainer.append(articlePanels);
     }
@@ -35,7 +36,7 @@ $(document).ready(function () {
         // It construction a jQuery element containing all of the formatted HTML for the
         // article panel
         let panel =
-            $(["<div class='panel panel-default'>",
+            $(["<div class='panel panel-default mt-3'>",
                 "<div class='panel-heading'>",
                 "<h3>",
                 article.article,
@@ -49,11 +50,11 @@ $(document).ready(function () {
                 "</div>",
                 "</div>",
             ].join(""));
-            // We attach the article's id to the jQuery element
-            // We will use this when trying to figure out which article the user wants to comment
-            panel.data("_id", article.id);
-            // return the constructed panel jQuery element
-            return panel;
+        // We attach the article's id to the jQuery element
+        // We will use this when trying to figure out which article the user wants to comment)
+        panel.data("_id", article._id);
+        // return the constructed panel jQuery element
+        return panel;
     }
 
     function renderEmpty() {
@@ -79,9 +80,10 @@ $(document).ready(function () {
     }
 
     function handleArticleComment() {
+        console.log("handling comment initiated")
         // Triggered when user wants to comment on an article
         // when we rendered the article initially, we attached a javascript object containing the headline id
-        // to the elemd using the .data method.  Here we retrieve that.
+        // to the element using the .data method.  Here we retrieve that.
         let articleToComment = $(this).parents(".panel").data();
         articleToComment.commented = true;
         // Using a patch method to be semantic since this is an update to an existing recorrd in our collection
@@ -90,25 +92,25 @@ $(document).ready(function () {
             url: "api/articles",
             data: articleToComment
         })
-        .then(function(data) {
-            // If successful, mongoose will send back an object containing a key of "ok" with the value of 1
-            // (which casts to 'true')
-            if (data.ok) {
-                // Run the initPage function again.  This will reload the entire list of articles
-                initPage()
-            }
-        })
+            .then(function (data) {
+                // If successful, mongoose will send back an object containing a key of "ok" with the value of 1
+                // (which casts to 'true')
+                if (data.ok) {
+                    // Run the initPage function again.  This will reload the entire list of articles
+                    initPage()
+                }
+            })
     }
 
     function handleArticleScrape() {
-console.log("handling scrape")
+        console.log("handling scrape")
         $.get("/api/fetch")
-        .then(function(data) {
-            // If we are able to successfully scrape the macrumors and compare the articles to those
-            // already in our collection, re render the articles on page
-            // and let the user know how many unique articles we were able to save
-            initPage();
-            alert("<h3 class='text=center m-top-80'>" + data.message + "<h3>");
-        })
+            .then(function (data) {
+                // If we are able to successfully scrape the macrumors and compare the articles to those
+                // already in our collection, re render the articles on page
+                // and let the user know how many unique articles we were able to save
+                initPage();
+                alert(data.message);
+            })
     }
 })

@@ -65,9 +65,11 @@ module.exports = function (router) {
         })
     })
 
-    router.delete("/api/comments:id", function (req, res) {
+    router.delete("/api/comments/:id", function (req, res) {
+        // console.log(req)
         let query = {};
         query._id = req.params.id;
+        console.log(query)
         commentsController.delete(query, function(err, data) {
             res.json(data);
         })
