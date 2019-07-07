@@ -76,7 +76,8 @@ module.exports = function (router) {
     })
 
     router.post("/api/comments", function(req, res) {
-        commentsController.save(req.body, function(data) {
+        console.log("save comment routed")
+        commentsController.comment(req.body, function(data) {
             res.json(data);
         })
     })

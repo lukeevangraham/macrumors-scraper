@@ -2,8 +2,8 @@ $(document).ready(function () {
     let articleContainer = $(".article-container");
     $(document).on("click", ".btn.delete", handleArticleDelete);
     $(document).on("click", ".btn.comments", handleArticleComments);
-    $(document).on("click", ".btn.comment", handleCommentComment);
-    $(document).on("click", ".btn.delete", handleCommentDelete);
+    $(document).on("click", ".btn.comment", handleSaveComment);
+    $(document).on("click", ".btn.comment-delete", handleCommentDelete);
 
     initPage();
 
@@ -97,9 +97,10 @@ $(document).ready(function () {
                 currentArticle._id,
                 "</h4>",
                 "<hr />",
-                "<ul>",
+                "<ul class='list-group comment-container'>",
+                "</ul>",
                 "<textarea placeholder='New Comment' rows='4' cols='60'></textarea>",
-                "<button class='btn btn-success save'>Save Comment</button>",
+                "<button class='btn btn-success comment'>Save Comment</button>",
                 "</div>"
             ].join("");
             bootbox.dialog({
@@ -108,7 +109,7 @@ $(document).ready(function () {
             })
             var commentData = {
                 _id: currentArticle._id,
-                notes: data || []
+                comments: data || []
             };
             $(".btn.comment").data("article", commentData);
             renderCommentsList(commentData);
@@ -129,19 +130,19 @@ $(document).ready(function () {
         else {
             for (let i = 0; i < data.comments.length; i++) {
                 currentComment = $([
-                    "<li class='list-group-item note'>",
+                    "<li class='list-group-item comment'>",
                     data.comments[i].commentText,
                     "<button class='btn btn-danger comment-delete'>x</button>",
                     "</li>"
                 ].join(""));
-                currentComment.children("button").data("_id", data.notes[i]._id);
+                currentComment.children("button").data("_id", data.comments[i]._id);
                 commentsToRender.push(currentComment)
             }
         }
         $(".comment-container").append(commentsToRender)
     }
 
-    function handleCommentComment() {
+    function handleSaveComment() {
         let commentData
         let newComment = $(".bootbox-body textarea").val().trim();
         if (newComment) {
@@ -149,17 +150,14 @@ $(document).ready(function () {
                 _id: $(this).data("article")._id,
                 commentText: newComment
             }
-            $.post("/api/notes", commentData).then(function() {
+            $.post("/api/comments", commentData).then(function() {
                 bootbox.hideAll();
             })
         }
     }
 
     function handleCommentDelete() {
-        console.log("handling delete initiated")
-        console.log($(this).data("_id"))
         let commentToDelete = $(this).data("_id");
-        console.log("comment to delete: ",commentToDelete)
         $.ajax({
             url: "/api/comments/" + commentToDelete,
             method: "DELETE"
