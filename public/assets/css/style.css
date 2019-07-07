@@ -1,0 +1,20 @@
+body {
+    background-image: url(../images/funky-lines.png)
+    /* background-color: aqua */
+}
+
+.panel {
+    background-color: #BFBFBF
+}
+
+h3 {
+    font-family: 'Lato', sans-serif;
+}
+
+.navbar-brand {
+    font-family: 'Lato', sans-serif;
+}
+
+.panel-body {
+    font-family: 'Roboto', serif;
+}

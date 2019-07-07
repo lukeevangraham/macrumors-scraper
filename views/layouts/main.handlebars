@@ -6,6 +6,8 @@
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 {{!-- <link rel="stylesheet" href="assets/javascript/index.js"> --}}
+<link href="https://fonts.googleapis.com/css?family=Lato|Roboto&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
 
 
     <title>Mongo Scraper</title>
@@ -28,11 +30,11 @@
         <a class="nav-link" href="/commented">Commented Articles</a>
       </li>
       <li class="nav-item">
-        <a class="btn btn-secondary mr-1 scrape-new">Scrape New Articles</a>
+        <a class="btn btn-secondary ml-1 scrape-new">Scrape New Articles</a>
       </li>
-      <li class="nav-item">
+      {{!-- <li class="nav-item">
         <a class="btn btn-secondary" href="#">Clear Articles</a>
-      </li>
+      </li> --}}
     </ul>
 
   </div>
@@ -41,7 +43,11 @@
     {{{body}}}
 
 
-
+<footer class="footer text-white-50 mt-5 bg-dark navbar-fixed-bottom">
+    <div class="container p-2">
+        <p>Macrumors Mongo Scraper</p>
+    </div>
+</footer>
 </body>
 
 </html>

@@ -24,19 +24,30 @@ $(document).ready(function () {
         // It construction a jQuery element containing all of the formatted HTML for the
         // article panel
         let panel =
-            $(["<div class='panel panel-default'>",
-                "<div class='panel-heading'>",
-                "<h3>",
+            $(["<div class='panel panel-default rounded p-2 mt-5'>",
+                "<div class='row'>",
+                // "<div class='col-5>",
+                "<div class='col-9 panel-heading'>",
+                "<h3><a target='blank' class='text-dark' href='",article.link,"'>",
                 article.article,
-                "<a class='btn btn-danger delete'>",
-                "Delete From Commented",
-                "</a>",
-                "<a class='btn btn-info comments'>Article Comments</a>",
-                "</h3>",
-                "</div>",
+                "</a></h3>",
+                // "</div>",
+
                 "<div class='panel-body'>",
                 article.summary,
                 "</div>",
+
+                "</div>",
+                "<div class='col-3'>",
+                "<a class='btn btn-warning float-right delete mb-2'>",
+                "Unsave",
+                "</a>",
+                "<a class='btn btn-secondary float-right comments'>Article Comments</a>",
+                "</div>",
+                "</div>",
+                // "<div class='panel-body'>",
+                // article.summary,
+                // "</div>",
                 "</div>",
             ].join(""));
         // We attach the article's id to the jQuery element
@@ -99,7 +110,7 @@ $(document).ready(function () {
                 "<hr />",
                 "<ul class='list-group comment-container'>",
                 "</ul>",
-                "<textarea placeholder='New Comment' rows='4' cols='60'></textarea>",
+                "<textarea placeholder='New Comment' rows='4' cols='50'></textarea>",
                 "<button class='btn btn-secondary comment'>Post Comment</button>",
                 "</div>"
             ].join("");
@@ -123,7 +134,7 @@ $(document).ready(function () {
             currentComment = [
                 "<li class='list-group-item'>",
                 "No comments for this article yet.",
-                ">/li>"
+                "</li>"
             ].join("")
             commentsToRender.push(currentComment)
         }
@@ -150,7 +161,7 @@ $(document).ready(function () {
                 _id: $(this).data("article")._id,
                 commentText: newComment
             }
-            $.post("/api/comments", commentData).then(function() {
+            $.post("/api/comments", commentData).then(function () {
                 bootbox.hideAll();
             })
         }
@@ -161,7 +172,7 @@ $(document).ready(function () {
         $.ajax({
             url: "/api/comments/" + commentToDelete,
             method: "DELETE"
-        }).then(function() {
+        }).then(function () {
             bootbox.hideAll()
         })
 

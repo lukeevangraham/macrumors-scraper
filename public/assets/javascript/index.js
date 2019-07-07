@@ -26,7 +26,6 @@ $(document).ready(function () {
         let articlePanels = [];
         for (let i = 0; i < articles.length; i++) {
             articlePanels.push(createPanel(articles[i]));
-            // console.log(articles._id)
         }
         articleContainer.append(articlePanels);
     }
@@ -36,14 +35,18 @@ $(document).ready(function () {
         // It construction a jQuery element containing all of the formatted HTML for the
         // article panel
         let panel =
-            $(["<div class='panel panel-default mt-3'>",
-                "<div class='panel-heading'>",
-                "<h3>",
+            $(["<div class='panel panel-default rounded p-2 mt-5'>",
+                "<div class='row'>",
+                "<div class='col-10 panel-heading'>",
+                "<h3><a target='blank' class='text-dark' href='",article.link,"'>",
                 article.article,
-                "<a class='btn btn-success comment'>",
-                "Comment Article",
+                "</a></h3></div>",
+                "<div class='col-2'>",
+                "<a class='btn btn-secondary float-right comment'>",
+                "Save Article",
                 "</a>",
-                "</h3>",
+                // "</div>",
+                "</div>",
                 "</div>",
                 "<div class='panel-body'>",
                 article.summary,
@@ -80,7 +83,6 @@ $(document).ready(function () {
     }
 
     function handleArticleComment() {
-        console.log("handling comment initiated")
         // Triggered when user wants to comment on an article
         // when we rendered the article initially, we attached a javascript object containing the headline id
         // to the element using the .data method.  Here we retrieve that.
