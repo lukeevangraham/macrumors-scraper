@@ -100,7 +100,7 @@ $(document).ready(function () {
                 "<ul class='list-group comment-container'>",
                 "</ul>",
                 "<textarea placeholder='New Comment' rows='4' cols='60'></textarea>",
-                "<button class='btn btn-success comment'>Save Comment</button>",
+                "<button class='btn btn-secondary comment'>Post Comment</button>",
                 "</div>"
             ].join("");
             bootbox.dialog({
