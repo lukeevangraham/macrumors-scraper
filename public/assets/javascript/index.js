@@ -37,11 +37,11 @@ $(document).ready(function () {
         let panel =
             $(["<div class='panel panel-default rounded p-2 mt-5'>",
                 "<div class='row'>",
-                "<div class='col-10 panel-heading'>",
+                "<div class='col-md-10 panel-heading'>",
                 "<h3><a target='blank' class='text-dark' href='",article.link,"'>",
                 article.article,
                 "</a></h3></div>",
-                "<div class='col-2'>",
+                "<div class='col-md-2'>",
                 "<a class='btn btn-secondary float-right comment'>",
                 "Save Article",
                 "</a>",

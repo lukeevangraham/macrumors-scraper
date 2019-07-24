@@ -27,7 +27,7 @@ $(document).ready(function () {
             $(["<div class='panel panel-default rounded p-2 mt-5'>",
                 "<div class='row'>",
                 // "<div class='col-5>",
-                "<div class='col-9 panel-heading'>",
+                "<div class='col-md-9 panel-heading'>",
                 "<h3><a target='blank' class='text-dark' href='",article.link,"'>",
                 article.article,
                 "</a></h3>",
@@ -38,7 +38,7 @@ $(document).ready(function () {
                 "</div>",
 
                 "</div>",
-                "<div class='col-3'>",
+                "<div class='col-md-3'>",
                 "<a class='btn btn-warning float-right delete mb-2'>",
                 "Unsave",
                 "</a>",

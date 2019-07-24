@@ -23,7 +23,7 @@ module.exports = {
     get: function(query, cb) {
         Article.find(query)
         .sort({
-            _id: 1
+            _id: -1
         })
         .exec(function(err, doc) {
             cb(doc);
