@@ -143,7 +143,7 @@ $(document).ready(function () {
                 currentComment = $([
                     "<li class='list-group-item comment'>",
                     data.comments[i].commentText,
-                    "<button class='btn btn-danger comment-delete'>x</button>",
+                    "<button class='btn btn-danger ml-1 comment-delete'>x</button>",
                     "</li>"
                 ].join(""));
                 currentComment.children("button").data("_id", data.comments[i]._id);
