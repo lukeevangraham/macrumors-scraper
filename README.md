@@ -4,7 +4,7 @@
 
 Deployed at:  https://macrumors-mongo-scraper.herokuapp.com/
 
-Macrumors Mongo Scraper is a web app that lets users view and leave comments on the latest news from Macrumors.com.  All articles are imported from Macrumors.com.
+Rumors about Apple tech move quickly.  This Macrumors-scraper makes it possible to "pin" news items selected by users.  Users can also view and leave comments on the latest news from Macrumors.com.  All articles are imported from Macrumors.com.
 
 ## Using the app
 
