@@ -22,6 +22,10 @@ var articleSchema = new Schema({
     type: String,
     required: true
   },
+  image: {
+    type: String,
+    require: false
+  },
   // date: String,
   commented: {
     type: Boolean,

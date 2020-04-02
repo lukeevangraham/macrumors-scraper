@@ -51,6 +51,7 @@ $(document).ready(function () {
                 "<div class='panel-body'>",
                 article.summary,
                 "</div>",
+                "<img class='img-fluid rounded' src='",article.image,"'>",
                 "</div>",
             ].join(""));
         // We attach the article's id to the jQuery element

@@ -23,11 +23,16 @@ let scrape = function (cb) {
             let str = $(this).children(".js-content").find(".js-contentInner").text()
             
             let newTrimmedString = str.split('.')[0] + ".";
+
+            let img = $(this).children(".js-content").find(".js-contentInner").find("img").attr('data-src');
+
+            console.log("IMG: ", img)
             
             let dataToAdd = {
                 article : $(this).find("h1").children("a").text(),
                 link : $(this).find("h1").children("a").attr("href"),
-                summary : newTrimmedString
+                summary : newTrimmedString,
+                image: img
             };
             // console.log("HERE: ", dataToAdd)
 
