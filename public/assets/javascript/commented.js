@@ -36,7 +36,7 @@ $(document).ready(function () {
                 "<div class='panel-body'>",
                 article.summary,
                 "</div>",
-                "<img class='img-fluid rounded' src='",article.image,"'>",
+                "<img class='img-fluid rounded mt-2' src='",article.image,"'>",
                 "</div>",
                 "<div class='col-md-3'>",
                 "<a class='btn btn-warning float-right delete mb-2'>",
