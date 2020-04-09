@@ -9,7 +9,7 @@ $(document).ready(function () {
 
     function initPage() {
         articleContainer.empty();
-        $.get("/api/articles?commented=true").then(function (data) {
+        $.get("./api/articles?commented=true").then(function (data) {
             if (data && data.length) {
                 renderArticles(data);
             }
@@ -91,7 +91,7 @@ $(document).ready(function () {
         var articleToDelete = $(this).parents(".panel").data();
         $.ajax({
             method: "DELETE",
-            url: "/api/articles/" + articleToDelete._id
+            url: "./api/articles/" + articleToDelete._id
         }).then(function (data) {
             if (data.ok) {
                 initPage();
@@ -101,7 +101,7 @@ $(document).ready(function () {
 
     function handleArticleComments() {
         let currentArticle = $(this).parents(".panel").data();
-        $.get("/api/comments/" + currentArticle._id).then(function (data) {
+        $.get("./api/comments/" + currentArticle._id).then(function (data) {
             var modalText = [
                 "<div class='container-fluid text-center'>",
                 "<h4>Comments For Article: ",
@@ -170,7 +170,7 @@ $(document).ready(function () {
     function handleCommentDelete() {
         let commentToDelete = $(this).data("_id");
         $.ajax({
-            url: "/api/comments/" + commentToDelete,
+            url: "./api/comments/" + commentToDelete,
             method: "DELETE"
         }).then(function () {
             bootbox.hideAll()
