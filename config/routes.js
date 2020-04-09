@@ -6,12 +6,18 @@ let commentsController = require("../controllers/comments")
 module.exports = function (router) {
     // render the home page
     router.get("/", function (req, res) {
-        res.render("home");
+        let hbsObject = {
+            home: true
+        }
+        res.render("home", hbsObject);
     })
 
     //render the commented page
     router.get("/commented", function (req, res) {
-        res.render("commented");
+        let hbsObject = {
+            commented: true
+        }
+        res.render("commented", hbsObject);
     })
 
     router.get("/api/fetch", function (req, res) {
