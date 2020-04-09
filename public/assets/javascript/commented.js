@@ -161,7 +161,7 @@ $(document).ready(function () {
                 _id: $(this).data("article")._id,
                 commentText: newComment
             }
-            $.post("/api/comments", commentData).then(function () {
+            $.post("./api/comments", commentData).then(function () {
                 bootbox.hideAll();
             })
         }
