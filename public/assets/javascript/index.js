@@ -11,7 +11,7 @@ $(document).ready(function () {
 
     function initPage() {
         articleContainer.empty();
-        $.get("/api/articles?commented=false")
+        $.get("./api/articles?commented=false")
             .then(function (data) {
                 if (data && data.length) {
                     renderArticles(data);
@@ -107,7 +107,7 @@ $(document).ready(function () {
 
     function handleArticleScrape() {
         console.log("handling scrape")
-        $.get("/api/fetch")
+        $.get("./api/fetch")
             .then(function (data) {
                 // If we are able to successfully scrape the macrumors and compare the articles to those
                 // already in our collection, re render the articles on page
