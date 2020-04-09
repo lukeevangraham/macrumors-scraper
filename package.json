@@ -2,7 +2,6 @@
   "name": "sd-news",
   "version": "1.0.0",
   "description": "App letting users view and leave comments on the latest news in San Diego",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
