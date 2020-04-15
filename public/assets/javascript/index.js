@@ -48,6 +48,7 @@ $(document).ready(function () {
                 // "</div>",
                 "</div>",
                 "</div>",
+                "<div class='row'><div class='col-md-12 font-italic text-secondary'>" + article.byline + "</div><div class='col-md-12 border-bottom mb-2'></div></div>",
                 "<div class='panel-body'>",
                 article.summary,
                 "</div>",

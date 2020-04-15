@@ -26,12 +26,17 @@ let scrape = function (cb) {
 
             let img = $(this).children(".js-content").find(".js-contentInner").find("img").attr('data-src');
 
-            console.log("IMG: ", img)
+            // console.log("IMG: ", img)
+
+            // let byline = $(this).find("div[class^='byline-']").text()
+
+            // console.log("LOOK HERE: ", byline)
             
             let dataToAdd = {
                 article : $(this).find("h1").children("a").text(),
                 link : $(this).find("h1").children("a").attr("href"),
                 summary : newTrimmedString,
+                byline : $(this).find("div[class^='byline-']").text(),
                 image: img
             };
             // console.log("HERE: ", dataToAdd)

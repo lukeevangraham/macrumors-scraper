@@ -30,6 +30,10 @@ var articleSchema = new Schema({
   commented: {
     type: Boolean,
     default: false
+  },
+  byline: {
+    type: String,
+    require: false
   }
 });
 
