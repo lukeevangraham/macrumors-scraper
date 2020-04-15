@@ -35,24 +35,28 @@ $(document).ready(function () {
         // It construction a jQuery element containing all of the formatted HTML for the
         // article panel
         let panel =
-            $(["<div class='panel panel-default rounded p-2 mt-5'>",
-                "<div class='row'>",
-                "<div class='col-md-10 panel-heading'>",
-                "<h3><a target='blank' class='text-dark' href='",article.link,"'>",
-                article.article,
-                "</a></h3></div>",
-                "<div class='col-md-2'>",
-                "<a class='btn btn-secondary float-right comment'>",
+            $(["<div class='card mt-5 shadow'>",
+                "<div class='card-header bg-secondary'>",
+                "<a class='btn btn-dark btn-sm float-right text-white comment'>",
                 "Save Article",
                 "</a>",
-                // "</div>",
                 "</div>",
-                "</div>",
-                "<div class='row'><div class='col-md-12 font-italic text-secondary'>" + article.byline + "</div><div class='col-md-12 border-bottom mb-2'></div></div>",
-                "<div class='panel-body'>",
+                "<div class='card-body'>",
+                "<h3><a target='blank' class='text-dark card-title' href='",article.link,"'>",
+                article.article,
+                "</a></h3>",
+                "<div class='card-text font-italic text-secondary'>" + article.byline + "</div><div class='col-md-12 border-bottom mb-3'></div>",
+                "<div class='card-text'>",
                 article.summary,
                 "</div>",
-                "<img class='img-fluid rounded mt-2' src='",article.image,"'>",
+                "<img class='card-img img-fluid rounded mt-2' src='",article.image,"'>",
+                "</div>",
+                // "<div class='col-md-2'>",
+                
+                // "</div>",
+                // "</div>",
+                
+                // "</div>",
                 "</div>",
             ].join(""));
         // We attach the article's id to the jQuery element
@@ -88,7 +92,7 @@ $(document).ready(function () {
         // Triggered when user wants to comment on an article
         // when we rendered the article initially, we attached a javascript object containing the headline id
         // to the element using the .data method.  Here we retrieve that.
-        let articleToComment = $(this).parents(".panel").data();
+        let articleToComment = $(this).parents(".card").data();
         articleToComment.commented = true;
         // Using a patch method to be semantic since this is an update to an existing recorrd in our collection
         $.ajax({

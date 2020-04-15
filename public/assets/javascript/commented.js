@@ -24,26 +24,27 @@ $(document).ready(function () {
         // It construction a jQuery element containing all of the formatted HTML for the
         // article panel
         let panel =
-            $(["<div class='panel panel-default rounded p-2 mt-5'>",
-                "<div class='row'>",
-                // "<div class='col-5>",
-                "<div class='col-md-9 panel-heading'>",
-                "<h3><a target='blank' class='text-dark' href='",article.link,"'>",
-                article.article,
-                "</a></h3>",
-                // "</div>",
-
-                "<div class='panel-body'>",
-                article.summary,
-                "</div>",
-                "<img class='img-fluid rounded mt-2' src='",article.image,"'>",
-                "</div>",
-                "<div class='col-md-3'>",
-                "<a class='btn btn-warning float-right delete mb-2'>",
+            $(["<div class='card mt-5 shadow'>",
+                "<div class='card-header bg-secondary'>",
+                "<a class='btn btn-sm btn-warning float-right delete'>",
                 "Unsave",
                 "</a>",
-                "<a class='btn btn-secondary float-right comments'>Article Comments</a>",
+                "<a class='btn btn-dark btn-sm float-right text-white comments mr-2'>Article Comments</a>",
+                // "<div class='col-5>",
                 "</div>",
+                "<div class='card-body'>",
+                "<h3><a target='blank' class='text-dark card-title' href='",article.link,"'>",
+                article.article,
+                "</a></h3>",
+                "<div class='card-text font-italic text-secondary'>"+ article.byline + "</div><div class='col-md-12 border-bottom mb-3'></div>",
+                // "</div>",
+
+                "<div class='card-text'>",
+                article.summary,
+                "</div>",
+                "<img class='card-img img-fluid rounded mt-2' src='",article.image,"'>",
+                "</div>",
+                "<div class='col-md-3'>",
                 "</div>",
                 // "<div class='panel-body'>",
                 // article.summary,
@@ -88,7 +89,7 @@ $(document).ready(function () {
     }
 
     function handleArticleDelete() {
-        var articleToDelete = $(this).parents(".panel").data();
+        var articleToDelete = $(this).parents(".card").data();
         $.ajax({
             method: "DELETE",
             url: "./api/articles/" + articleToDelete._id
@@ -100,7 +101,7 @@ $(document).ready(function () {
     }
 
     function handleArticleComments() {
-        let currentArticle = $(this).parents(".panel").data();
+        let currentArticle = $(this).parents(".card").data();
         $.get("./api/comments/" + currentArticle._id).then(function (data) {
             var modalText = [
                 "<div class='container-fluid text-center'>",
