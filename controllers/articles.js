@@ -13,6 +13,8 @@ module.exports = {
             }
 
             Article.collection.insertMany(headlines, {ordered:false}, function(err, docs) {
+                // console.log("DB DOCS: ", docs)
+                // console.log("ERR: ", err.result.nInserted)
                 cb(err, docs);
             })
         })

@@ -42,7 +42,9 @@ let scrape = function (cb) {
             // console.log("HERE: ", dataToAdd)
 
             result.push(dataToAdd);
+            scrapeCount++;
         })
+        // console.log("RESULT: ", result)
         cb(result)
     });
         //     db.Article.create(result)

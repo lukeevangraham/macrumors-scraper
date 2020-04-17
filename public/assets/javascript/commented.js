@@ -102,6 +102,7 @@ $(document).ready(function () {
 
     function handleArticleComments() {
         let currentArticle = $(this).parents(".card").data();
+        console.log("CRRENT: ", currentArticle)
         $.get("./api/comments/" + currentArticle._id).then(function (data) {
             var modalText = [
                 "<div class='container-fluid text-center'>",
